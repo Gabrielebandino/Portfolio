@@ -1,114 +1,190 @@
-import React, { useRef, useState } from 'react';
-import '../assets/styles/Contact.scss';
-// import emailjs from '@emailjs/browser';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import SendIcon from '@mui/icons-material/Send';
-import TextField from '@mui/material/TextField';
+import React, { useState } from "react";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import SendIcon from "@mui/icons-material/Send";
+import TextField from "@mui/material/TextField";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
+import emailjs from "@emailjs/browser";
+import "../assets/styles/Contact.scss";
 
 function Contact() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
 
-  const [name, setName] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
-  const [message, setMessage] = useState<string>('');
+  const [nameError, setNameError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+  const [messageError, setMessageError] = useState(false);
 
-  const [nameError, setNameError] = useState<boolean>(false);
-  const [emailError, setEmailError] = useState<boolean>(false);
-  const [messageError, setMessageError] = useState<boolean>(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [toast, setToast] = useState({ open: false, ok: true, msg: "" });
 
-  const form = useRef();
-
-  const sendEmail = (e: any) => {
-    e.preventDefault();
-
-    setNameError(name === '');
-    setEmailError(email === '');
-    setMessageError(message === '');
-
-    /* Uncomment below if you want to enable the emailJS */
-
-    // if (name !== '' && email !== '' && message !== '') {
-    //   var templateParams = {
-    //     name: name,
-    //     email: email,
-    //     message: message
-    //   };
-
-    //   console.log(templateParams);
-    //   emailjs.send('service_id', 'template_id', templateParams, 'api_key').then(
-    //     (response) => {
-    //       console.log('SUCCESS!', response.status, response.text);
-    //     },
-    //     (error) => {
-    //       console.log('FAILED...', error);
-    //     },
-    //   );
-    //   setName('');
-    //   setEmail('');
-    //   setMessage('');
-    // }
+  const validate = () => {
+    const nameErr = name.trim() === "";
+    const emailErr = email.trim() === "";
+    const msgErr = message.trim() === "";
+    setNameError(nameErr);
+    setEmailError(emailErr);
+    setMessageError(msgErr);
+    return !(nameErr || emailErr || msgErr);
   };
+
+  const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!validate()) return;
+
+    // CRA / Webpack env vars
+    const SERVICE_ID = process.env.REACT_APP_EMAILJS_SERVICE_ID;
+    const TEMPLATE_ID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
+    const PUBLIC_KEY = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
+
+    if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY) {
+      setToast({
+        open: true,
+        ok: false,
+        msg: "Email service is not configured. Add REACT_APP_* vars to .env.local and restart the dev server.",
+      });
+      return;
+    }
+
+    try {
+      setSubmitting(true);
+
+      await emailjs.send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        { from_name: name, reply_to: email, message },
+        { publicKey: PUBLIC_KEY }
+      );
+
+      setToast({
+        open: true,
+        ok: true,
+        msg: "Message sent! I'll get back to you soon.",
+      });
+      setName("");
+      setEmail("");
+      setMessage("");
+    } catch (err) {
+      console.error(err);
+      setToast({
+        open: true,
+        ok: false,
+        msg: "Something went wrong. Please try again later.",
+      });
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  // MUI input safety (visible text/caret, above overlays)
+  const fieldSx = (theme: any) => ({
+    "& .MuiOutlinedInput-root": {
+      bgcolor: "background.paper",
+      position: "relative",
+      zIndex: 1,
+    },
+    "& .MuiOutlinedInput-input, & .MuiInputBase-inputMultiline, & textarea": {
+      color: "text.primary",
+      caretColor: theme.palette.text.primary,
+    },
+  });
 
   return (
     <div id="contact">
-      <div className="items-container">
+      <Box
+        sx={{ mx: "auto", maxWidth: 720, width: "100%", px: { xs: 2, md: 0 } }}
+      >
         <div className="contact_wrapper">
           <h1>Contact Me</h1>
-          <p>Got a project waiting to be realized? Let's collaborate and make it happen!</p>
+          <p>Let's keep in touch!</p>
+
           <Box
-            ref={form}
             component="form"
             noValidate
             autoComplete="off"
-            className='contact-form'
+            onSubmit={sendEmail}
+            sx={{ display: "flex", flexDirection: "column", gap: 2.5 }}
           >
-            <div className='form-flex'>
+            <Box
+              sx={{
+                display: "grid",
+                gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr" },
+                gap: 2,
+              }}
+            >
               <TextField
                 required
-                id="outlined-required"
-                label="Your Name"
-                placeholder="What's your name?"
+                fullWidth
+                variant="outlined"
+                //label="Your Name"
+                placeholder="Your Name"
                 value={name}
-                onChange={(e) => {
-                  setName(e.target.value);
-                }}
+                onChange={(e) => setName(e.target.value)}
                 error={nameError}
                 helperText={nameError ? "Please enter your name" : ""}
+                sx={fieldSx}
               />
               <TextField
                 required
-                id="outlined-required"
-                label="Email / Phone"
-                placeholder="How can I reach you?"
+                fullWidth
+                variant="outlined"
+                //label="Email / Phone"
+                placeholder="Your e-mail"
                 value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                }}
+                onChange={(e) => setEmail(e.target.value)}
                 error={emailError}
-                helperText={emailError ? "Please enter your email or phone number" : ""}
+                helperText={
+                  emailError ? "Please enter your email or phone number" : ""
+                }
+                sx={fieldSx}
               />
-            </div>
+            </Box>
+
             <TextField
               required
-              id="outlined-multiline-static"
-              label="Message"
-              placeholder="Send me any inquiries or questions"
+              fullWidth
+              variant="outlined"
+              //label="Message"
+              placeholder="Your message!"
               multiline
               rows={10}
-              className="body-form"
               value={message}
-              onChange={(e) => {
-                setMessage(e.target.value);
-              }}
+              onChange={(e) => setMessage(e.target.value)}
               error={messageError}
               helperText={messageError ? "Please enter the message" : ""}
+              sx={fieldSx}
             />
-            <Button variant="contained" endIcon={<SendIcon />} onClick={sendEmail}>
-              Send
-            </Button>
+
+            <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+              <Button
+                type="submit"
+                variant="contained"
+                endIcon={<SendIcon />}
+                disabled={submitting}
+              >
+                {submitting ? "Sending..." : "Send"}
+              </Button>
+            </Box>
           </Box>
+
+          <Snackbar
+            open={toast.open}
+            autoHideDuration={4000}
+            onClose={() => setToast({ ...toast, open: false })}
+            anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+          >
+            <Alert
+              severity={toast.ok ? "success" : "error"}
+              onClose={() => setToast({ ...toast, open: false })}
+              variant="filled"
+            >
+              {toast.msg}
+            </Alert>
+          </Snackbar>
         </div>
-      </div>
+      </Box>
     </div>
   );
 }
