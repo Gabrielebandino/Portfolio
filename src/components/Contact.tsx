@@ -5,7 +5,6 @@ import SendIcon from "@mui/icons-material/Send";
 import TextField from "@mui/material/TextField";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
-import emailjs from "@emailjs/browser";
 import "../assets/styles/Contact.scss";
 
 function Contact() {
@@ -34,29 +33,19 @@ function Contact() {
     e.preventDefault();
     if (!validate()) return;
 
-    // CRA / Webpack env vars
-    const SERVICE_ID = process.env.REACT_APP_EMAILJS_SERVICE_ID;
-    const TEMPLATE_ID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
-    const PUBLIC_KEY = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
-
-    if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY) {
-      setToast({
-        open: true,
-        ok: false,
-        msg: "Email service is not configured. Add REACT_APP_* vars to .env.local and restart the dev server.",
-      });
-      return;
-    }
-
     try {
       setSubmitting(true);
 
-      await emailjs.send(
-        SERVICE_ID,
-        TEMPLATE_ID,
-        { from_name: name, reply_to: email, message },
-        { publicKey: PUBLIC_KEY }
-      );
+      const resp = await fetch("/.netlify/functions/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message }),
+      });
+
+      if (!resp.ok) {
+        const data = await resp.json().catch(() => ({}));
+        throw new Error(data?.error || "Email send failed");
+      }
 
       setToast({
         open: true,
@@ -78,7 +67,6 @@ function Contact() {
     }
   };
 
-  // MUI input safety (visible text/caret, above overlays)
   const fieldSx = (theme: any) => ({
     "& .MuiOutlinedInput-root": {
       bgcolor: "background.paper",
@@ -118,7 +106,6 @@ function Contact() {
                 required
                 fullWidth
                 variant="outlined"
-                //label="Your Name"
                 placeholder="Your Name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
@@ -130,7 +117,6 @@ function Contact() {
                 required
                 fullWidth
                 variant="outlined"
-                //label="Email / Phone"
                 placeholder="Your e-mail"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -146,7 +132,6 @@ function Contact() {
               required
               fullWidth
               variant="outlined"
-              //label="Message"
               placeholder="Your message!"
               multiline
               rows={10}
