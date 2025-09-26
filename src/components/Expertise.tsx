@@ -1,11 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faReact,
-  faDocker,
-  faPython,
-  faAws,
-} from "@fortawesome/free-brands-svg-icons";
+import { faAws } from "@fortawesome/free-brands-svg-icons";
 import { faDatabase, faBrain } from "@fortawesome/free-solid-svg-icons";
 import Chip from "@mui/material/Chip";
 import "../assets/styles/Expertise.scss";
