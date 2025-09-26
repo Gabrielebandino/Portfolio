@@ -16,6 +16,15 @@
 /.parcel-cache
 /.eslintcache
 
+# nested deps, builds, caches
+**/node_modules/
+**/.cache/
+**/.vite/
+**/dist/
+**/build/
+**/.parcel-cache/
+
+
 # misc
 .DS_Store
 .env
