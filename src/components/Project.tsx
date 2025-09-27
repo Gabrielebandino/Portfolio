@@ -2,6 +2,7 @@ import React from "react";
 import Chip from "@mui/material/Chip";
 import drive from "../assets/images/drive.png";
 import frogger from "../assets/images/frogger.png";
+import nst from "../assets/images/nst.png";
 import "../assets/styles/Project.scss";
 
 function Project() {
@@ -11,10 +12,23 @@ function Project() {
       <div className="projects-grid">
         {/* Project 1: Frogger */}
         <div className="project">
-          <a href="https://www.google.com/" target="_blank" rel="noreferrer">
-            <img src={frogger} className="zoom" alt="thumbnail" width="100%" />
+          <a
+            href="https://github.com/Gabrielebandino/FroggerProcess"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img
+              src={frogger}
+              className="zoom"
+              alt="Frogger thumbnail"
+              width="100%"
+            />
           </a>
-          <a href="https://www.google.com/" target="_blank" rel="noreferrer">
+          <a
+            href="https://github.com/Gabrielebandino/FroggerProcess"
+            target="_blank"
+            rel="noreferrer"
+          >
             <h2>Frogger in C</h2>
           </a>
           <p>
@@ -26,15 +40,29 @@ function Project() {
             <span className="chip-title">Tech stack:</span>
             <Chip className="chip" label="C" />
             <Chip className="chip" label="Parallelization" />
+            <Chip className="chip" label="ncurses" />
           </div>
         </div>
 
         {/* Project 2: Autonomous Driving */}
         <div className="project">
-          <a href="https://www.google.com/" target="_blank" rel="noreferrer">
-            <img src={drive} className="zoom" alt="thumbnail" width="100%" />
+          <a
+            href="https://github.com/Gabrielebandino/AutonomousVehicles_RL"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img
+              src={drive}
+              className="zoom"
+              alt="Autonomous Driving thumbnail"
+              width="100%"
+            />
           </a>
-          <a href="https://www.google.com/" target="_blank" rel="noreferrer">
+          <a
+            href="https://github.com/Gabrielebandino/AutonomousVehicles_RL"
+            target="_blank"
+            rel="noreferrer"
+          >
             <h2>Autonomous Driving</h2>
           </a>
           <p>
@@ -48,6 +76,40 @@ function Project() {
             <Chip className="chip" label="Python" />
             <Chip className="chip" label="PyTorch" />
             <Chip className="chip" label="Unity" />
+          </div>
+        </div>
+        {/* Project 3: Neural Style Transfer */}
+        <div className="project">
+          <a
+            href="https://github.com/Gabrielebandino/NeuralStyleTransfer"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img
+              src={nst}
+              className="zoom"
+              alt="Neural Style Transfer thumbnail"
+              width="100%"
+            />
+          </a>
+          <a
+            href="https://github.com/Gabrielebandino/NeuralStyleTransfer"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <h2>Neural Style Transfer</h2>
+          </a>
+          <p>
+            Research and optimization on neural style transfer. Achieved sharper
+            textures and more faithful color transfer than the TensorFlow
+            baseline and Adobe’s Neural Filters (as of 2023).
+          </p>
+          <div className="flex-chips">
+            <span className="chip-title">Tech stack:</span>
+            <Chip className="chip" label="Python" />
+            <Chip className="chip" label="TensorFlow" />
+            <Chip className="chip" label="PyTorch" />
+            <Chip className="chip" label="NST" />
           </div>
         </div>
       </div>
