@@ -98,15 +98,20 @@ function Timeline() {
             </h4>
             <ul>
               <li>
-                Predicted corporate performance by analyzing financial statement
-                datasets of 300,000 Italian companies.
+                Researched the application of temporal autoencoders to uncover
+                patterns in financial statements that correlate with long-term
+                corporate prosperity.
               </li>
               <li>
-                Presented thesis titled{" "}
+                Analyzed and forecasted corporate performance across a dataset
+                of 300,000 Italian companies.
+              </li>
+              <li>
+                Presented thesis work{" "}
                 <em>
                   "Latent Space Exploration for Financial Statement Forecasting"
                 </em>
-                , highlighting key findings and methodologies.
+                , showcasing methodologies and key findings.
               </li>
             </ul>
             <p>

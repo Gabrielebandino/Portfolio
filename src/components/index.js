@@ -5,3 +5,10 @@ export { default as Expertise } from "./Expertise";
 export { default as Timeline } from "./Timeline";
 export { default as Project } from "./Project";
 export { default as Contact } from "./Contact";
+
+// How the Process Works:
+// Main branch → Your development happens here
+// npm run build → Creates optimized files in build folder
+// gh-pages -d build → Pushes build folder contents to gh-pages branch
+// GitHub Pages → Serves files from gh-pages branch
+// https://gabrielebandino.github.io/Portfolio/

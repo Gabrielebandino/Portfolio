@@ -36,15 +36,27 @@ function Contact() {
     try {
       setSubmitting(true);
 
-      const resp = await fetch("/.netlify/functions/send-email", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, message }),
-      });
+      // Direct EmailJS call - completely safe with public keys
+      const response = await fetch(
+        "https://api.emailjs.com/api/v1.0/email/send",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            service_id: "service_bfk1y0k",
+            template_id: "template_niaodfw",
+            user_id: "ZXKa0DXdnGT9Lg3-k",
+            template_params: {
+              from_name: name,
+              reply_to: email,
+              message: message,
+            },
+          }),
+        }
+      );
 
-      if (!resp.ok) {
-        const data = await resp.json().catch(() => ({}));
-        throw new Error(data?.error || "Email send failed");
+      if (!response.ok) {
+        throw new Error("Email send failed");
       }
 
       setToast({
