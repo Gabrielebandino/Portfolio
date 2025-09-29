@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Portfolio/static/css/main.5fbaac2e.css",
-    "main.js": "/Portfolio/static/js/main.11fafdc6.js",
+    "main.css": "/Portfolio/static/css/main.a1b2a9b2.css",
+    "main.js": "/Portfolio/static/js/main.5fdcdc7a.js",
     "static/js/453.b05d8aa5.chunk.js": "/Portfolio/static/js/453.b05d8aa5.chunk.js",
     "static/media/nst.png": "/Portfolio/static/media/nst.bb39e733dd1a9bc95ef6.png",
     "static/media/frogger.png": "/Portfolio/static/media/frogger.ea515e5df39fe37e51d8.png",
@@ -14,13 +14,16 @@
     "static/media/polimi.svg": "/Portfolio/static/media/polimi.e4bc7bf59e915e8b0bd1adfe8e7caa15.svg",
     "static/media/user.jpeg": "/Portfolio/static/media/user.fb1db8400dcca0bbdc32.jpeg",
     "static/media/unica.svg": "/Portfolio/static/media/unica.1fee9b9edacc598f55f7e1a6ee452d65.svg",
+    "static/media/ltf.svg": "/Portfolio/static/media/ltf.83b674972d030ed648234b2a2268a196.svg",
+    "static/media/ielts.svg": "/Portfolio/static/media/ielts.5133e5da2d449162d9fafe5a27256b43.svg",
+    "static/media/cambridge-c1.svg": "/Portfolio/static/media/cambridge-c1.04e0808889951228297c15a9c29d6571.svg",
     "index.html": "/Portfolio/index.html",
-    "main.5fbaac2e.css.map": "/Portfolio/static/css/main.5fbaac2e.css.map",
-    "main.11fafdc6.js.map": "/Portfolio/static/js/main.11fafdc6.js.map",
+    "main.a1b2a9b2.css.map": "/Portfolio/static/css/main.a1b2a9b2.css.map",
+    "main.5fdcdc7a.js.map": "/Portfolio/static/js/main.5fdcdc7a.js.map",
     "453.b05d8aa5.chunk.js.map": "/Portfolio/static/js/453.b05d8aa5.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5fbaac2e.css",
-    "static/js/main.11fafdc6.js"
+    "static/css/main.a1b2a9b2.css",
+    "static/js/main.5fdcdc7a.js"
   ]
 }
