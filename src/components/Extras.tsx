@@ -33,9 +33,7 @@ function Extras() {
             <div className="description">
               Among the few Italian students selected as mentee for
               LeadTheFuture, a leading mentorship non-profit organization for
-              students in STEM, with acceptance rate around 10%. Receiving
-              one-on-one guidance from high-impact mentors from Silicon Valley
-              and CERN.
+              students in STEM, with acceptance rate around 10%.
             </div>
           </div>
 
