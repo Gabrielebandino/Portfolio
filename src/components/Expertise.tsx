@@ -44,7 +44,7 @@ function Expertise() {
   return (
     <div className="container" id="expertise">
       <div className="skills-container">
-        <h1>Expertise</h1>
+        <h1 className="section-title expertise">Expertise</h1>
         <div className="skills-grid">
           <div className="skill">
             <FontAwesomeIcon icon={faAws} size="3x" aria-label="AWS" />
@@ -55,9 +55,12 @@ function Expertise() {
             </p>
             <div className="flex-chips">
               <span className="chip-title">Tech stack:</span>
-              {labelsCloud.map((label, i) => (
-                <Chip key={i} className="chip" label={label} />
-              ))}
+              <div className="chips-wrapper">
+                {labelsCloud.map((label, i) => (
+                  <Chip key={i} className="chip" label={label} />
+                ))}
+              </div>
+              <div className="chips-divider"></div>
             </div>
           </div>
 
@@ -75,9 +78,12 @@ function Expertise() {
             </p>
             <div className="flex-chips">
               <span className="chip-title">Tech stack:</span>
-              {labelsData.map((label, i) => (
-                <Chip key={i} className="chip" label={label} />
-              ))}
+              <div className="chips-wrapper">
+                {labelsData.map((label, i) => (
+                  <Chip key={i} className="chip" label={label} />
+                ))}
+              </div>
+              <div className="chips-divider"></div>
             </div>
           </div>
 
@@ -95,9 +101,12 @@ function Expertise() {
             </p>
             <div className="flex-chips">
               <span className="chip-title">Tech stack:</span>
-              {labelsML.map((label, i) => (
-                <Chip key={i} className="chip" label={label} />
-              ))}
+              <div className="chips-wrapper">
+                {labelsML.map((label, i) => (
+                  <Chip key={i} className="chip" label={label} />
+                ))}
+              </div>
+              <div className="chips-divider"></div>
             </div>
           </div>
         </div>

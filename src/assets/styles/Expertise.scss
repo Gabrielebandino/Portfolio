@@ -61,19 +61,67 @@
 }
 
 @media screen {
+    @media (max-width: 1024px) {
+        .skills-container .skills-grid {
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 30px;
+        }
+    }
+
     @media (max-width: 768px) {
         .skills-container {
-            display: block;
             padding-left: 5%;
             padding-right: 5%;
         }
     
         .skills-container .skills-grid {
-            display: initial;
+            grid-template-columns: 1fr;
+            grid-gap: 30px;
         }
         
         .skills-container .skills-grid .skill {
             padding-bottom: 5%;
+            text-align: center; /* Center content on mobile */
+            
+            svg {
+                margin: 0 auto 1rem auto; /* Center icon with bottom margin */
+                display: block;
+            }
+            
+            .flex-chips {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                
+                .chip-title {
+                    text-align: center;
+                    margin-bottom: 0.75rem;
+                    font-weight: 600;
+                    font-size: 1rem;
+                }
+                
+                /* Chip container wrapper */
+                .chips-wrapper {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    gap: 0.5rem;
+                    max-width: 100%;
+                    margin-bottom: 1rem;
+                }
+                
+                /* Divider after chips */
+                .chips-divider {
+                    width: 60px;
+                    height: 2px;
+                    background: rgba(255, 255, 255, 0.3);
+                    margin: 0 auto;
+                }
+                
+                .MuiChip-root {
+                    margin: 0;
+                }
+            }
         }
     }
 

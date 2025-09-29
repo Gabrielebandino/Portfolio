@@ -13,6 +13,11 @@
   
 .projects-container .projects-grid .project {
     text-align: left;
+    margin-bottom: 3rem; /* Add space between projects */
+}
+
+.project .flex-chips {
+    margin-bottom: 2rem; /* Add space after tech stack */
 }
   
 .project h2:hover {
@@ -36,6 +41,7 @@
             display: block;
             padding-left: 5%;
             padding-right: 5%;
+            text-align: center;
         }
   
         .projects-container .projects-grid {
@@ -44,6 +50,30 @@
       
         .projects-container .projects-grid .project {
             padding-bottom: 5%;
+            text-align: center;
+            padding: 2rem 0;
+            margin-bottom: 0;
+            position: relative;
+        }
+        
+        .projects-container .projects-grid .project::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 1px;
+            background-color: #e0e0e0;
+        }
+        
+        .projects-container .projects-grid .project:last-child::after {
+            display: none;
+        }
+        
+        .project .flex-chips {
+            justify-content: center;
+            flex-wrap: wrap;
         }
     }
 }

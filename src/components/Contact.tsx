@@ -97,7 +97,7 @@ function Contact() {
         sx={{ mx: "auto", maxWidth: 720, width: "100%", px: { xs: 2, md: 0 } }}
       >
         <div className="contact_wrapper">
-          <h1>Contact Me</h1>
+          <h1 className="section-title contact">Contact Me</h1>
           <p>Let's keep in touch!</p>
 
           <Box

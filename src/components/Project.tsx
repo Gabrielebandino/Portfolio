@@ -8,7 +8,7 @@ import "../assets/styles/Project.scss";
 function Project() {
   return (
     <div className="projects-container" id="projects">
-      <h1>Personal Projects</h1>
+      <h1 className="section-title projects">Cool Projects</h1>
       <div className="projects-grid">
         {/* Project 1: Frogger */}
         <div className="project">

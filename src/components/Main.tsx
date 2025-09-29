@@ -29,7 +29,7 @@ function Main() {
             </a>
           </div>
           <h1>Gabriele Bandino</h1>
-          <p>HPC @ Polimi | Ex-Amazon Engineer Intern</p>
+          <p>HPC @ Polimi | Ex-Amazon Engineering Intern</p>
 
           <div className="mobile_social_icons">
             <a
