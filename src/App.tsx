@@ -5,6 +5,7 @@ import {
   Expertise,
   Project,
   Education,
+  Extras,
   Contact,
   Navigation,
   Footer,
@@ -40,6 +41,7 @@ function App() {
         <Timeline />
         <Project />
         <Education />
+        <Extras />
         <Contact />
       </FadeIn>
       <Footer />

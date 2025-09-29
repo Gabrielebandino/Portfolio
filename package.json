@@ -2,7 +2,7 @@
   "name": "react-portfolio-template",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://gabrielebandino.github.io/Portfolio/",
+  "homepage": "https://gabrielebandino.github.io/portfolio/",
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@emotion/react": "^11.11.4",
@@ -30,7 +30,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "PUBLIC_URL=/portfolio react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",

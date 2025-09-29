@@ -1,0 +1,225 @@
+.extras-container {
+    padding: 5% 10%;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.extras-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2rem;
+    margin-top: 2rem;
+}
+
+.extras-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 1.5rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    height: fit-content;
+    
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        background: rgba(255, 255, 255, 0.08);
+    }
+}
+
+.card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    
+    .certification-logo {
+        width: 50px;
+        height: 50px;
+        object-fit: contain;
+        filter: brightness(0) invert(1);
+        flex-shrink: 0;
+    }
+}
+
+.certification-info {
+    flex: 1;
+    min-width: 0;
+    
+    .certification-title {
+        color: white;
+        font-size: 1rem;
+        font-weight: 700;
+        margin: 0 0 0.5rem 0;
+        line-height: 1.3;
+    }
+    
+    .organization-date {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+        
+        .organization {
+            color: rgb(99, 102, 241);
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+        
+        .date {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+    }
+}
+
+.description {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.5;
+    font-size: 0.85rem;
+}
+
+// Tablet view - 2 columns
+@media screen and (max-width: 1024px) {
+    .extras-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 1.5rem;
+    }
+    
+    .extras-card {
+        padding: 1.25rem;
+    }
+    
+    .card-header {
+        .certification-logo {
+            width: 45px;
+            height: 45px;
+        }
+    }
+    
+    .certification-info {
+        .certification-title {
+            font-size: 0.95rem;
+        }
+        
+        .organization-date {
+            .organization {
+                font-size: 0.8rem;
+            }
+            
+            .date {
+                font-size: 0.75rem;
+            }
+        }
+    }
+    
+    .description {
+        font-size: 0.8rem;
+    }
+}
+
+// Mobile view - 1 column
+@media screen and (max-width: 768px) {
+    .extras-container {
+        padding: 5% 5%;
+    }
+    
+    .extras-grid {
+        grid-template-columns: 1fr;
+        grid-gap: 1.5rem;
+        margin-top: 1.5rem;
+    }
+    
+    .extras-card {
+        padding: 1.25rem;
+        
+        .card-header {
+            flex-direction: row;
+            align-items: center;
+            gap: 1rem;
+            
+            .certification-logo {
+                width: 40px;
+                height: 40px;
+            }
+        }
+        
+        .certification-info {
+            .certification-title {
+                font-size: 0.9rem;
+            }
+            
+            .organization-date {
+                .organization {
+                    font-size: 0.75rem;
+                }
+                
+                .date {
+                    font-size: 0.7rem;
+                }
+            }
+        }
+        
+        .description {
+            font-size: 0.8rem;
+        }
+    }
+}
+
+@media screen and (max-width: 567px) {
+    .extras-card {
+        padding: 1rem;
+        
+        .card-header {
+            .certification-logo {
+                width: 35px;
+                height: 35px;
+            }
+        }
+        
+        .certification-info {
+            .certification-title {
+                font-size: 0.85rem;
+            }
+        }
+        
+        .description {
+            font-size: 0.75rem;
+            line-height: 1.4;
+        }
+    }
+}
+
+/* Light mode styling */
+.light-mode {
+    .extras-card {
+        background: rgba(0, 0, 0, 0.05) !important;
+        border: 1px solid rgba(0, 0, 0, 0.1) !important;
+        
+        &:hover {
+            background: rgba(0, 0, 0, 0.08) !important;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1) !important;
+        }
+        
+        .certification-logo {
+            filter: brightness(0) invert(0) !important;
+        }
+        
+        .certification-title {
+            color: #0d1116 !important;
+        }
+        
+        .organization {
+            color: rgb(79, 70, 229) !important;
+        }
+        
+        .date {
+            color: rgba(0, 0, 0, 0.6) !important;
+        }
+        
+        .description {
+            color: rgba(0, 0, 0, 0.7) !important;
+        }
+    }
+}
